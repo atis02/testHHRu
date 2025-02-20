@@ -1,11 +1,25 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Modal,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import TemporaryDrawer from "./components/drawer";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import CloseIcon from "@mui/icons-material/Close";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openBackDrop, setOpenBackDrop] = useState(false);
+
+  const handleCloseModal = () => {
+    setOpenBackDrop(false);
+  };
   const data = [
     { title: "Seu time" },
     { title: "Seu signo" },
@@ -93,6 +107,7 @@ const Navbar = () => {
                 color: "#AD0019",
               },
             }}
+            onClick={() => setOpenBackDrop(true)}
           >
             <PersonOutlineIcon
               sx={{
@@ -101,6 +116,69 @@ const Navbar = () => {
             />
             <Typography fontSize={20}>Entre</Typography>
           </Button>
+          <Modal
+            open={openBackDrop}
+            onClose={handleCloseModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: 400,
+                bgcolor: "background.paper",
+                border: "1px solid lightgray",
+                borderRadius: 3,
+                boxShadow: 24,
+                p: 2,
+              }}
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Stack></Stack>
+                <Typography fontSize={24} ml={4}>
+                  Регистрация
+                </Typography>
+                <IconButton onClick={handleCloseModal}>
+                  <CloseIcon />
+                </IconButton>
+              </Stack>
+              <Stack>
+                <Box component="form" noValidate autoComplete="off">
+                  <TextField
+                    label="Имя"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                  />
+                  <TextField
+                    label="Фамилия"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                  />
+                  <TextField
+                    label="почта"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                  />
+                  <TextField
+                    label="Телефон"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                  />{" "}
+                </Box>
+              </Stack>
+            </Box>
+          </Modal>
           <Button
             sx={{
               color: "#000",
