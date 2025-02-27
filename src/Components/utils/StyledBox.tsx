@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { FC, ReactNode } from "react";
 
 interface StyledBoxProps {
@@ -7,14 +6,14 @@ interface StyledBoxProps {
 
 const StyledBox: FC<StyledBoxProps> = ({ children }) => {
   return (
-    <Box
-      sx={{
-        m: { lg: "0 107px", md: "0 20px", sm: "0 15px", xs: "0 17px" },
+    <div
+      style={{
+        margin: "0 50px",
         flexWrap: "wrap",
       }}
     >
       {children}
-    </Box>
+    </div>
   );
 };
 
